@@ -45,7 +45,7 @@ Some things we would be looking out for in the app are:
 
 ## Dependencies
 
-The project was originally generated via ng generate so a majority of dependencies involve those generally shipped with angular
+The project was originally generated via ng generate so a majority of dependencies involve those generally shipped with react
 
 * YARN
 * React

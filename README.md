@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React Interview Assignment
+An React application that will be used as a starting guide for candidates to implement the assignment.
 
-## Available Scripts
+To confirm the application can run, after cloning it and installing the dependencies (via npm), run ng serve and go to http://localhost:3000 to confirm it can run. Feel free to delete the existing code when making the implementation
 
-In the project directory, you can run:
+## The Application Scenario
+We would like a simple application to order a pizza.
 
-### `yarn start`
+The default page would allow the user to select between Pick Up or Delivery
+Once selected, the app should load the 5 types of pizza we offer (Picture not required)
+Chonky Chicken 10$
+Beef Barbeque 12$
+Hawking Hawaiian 10$
+Margeret's Margherita 8$
+Vegan Villa Vista 8$
+Selecting a pizza should give the user a few options:
+Select the size (Small, Medium, Large)
+Select if they would like extra cheese (Yes or No)
+Select the quantity
+The user is allowed to select multiple pizzas
+The user is also allowed to remove pizzas
+Once the order is complete they can proceed to checkout
+The checkout should display a summary of their order including the pizzas'
+Sizes
+Cheese
+Quantity
+Total price
+And method of delivery
+Have a button to confirm the user order which will thank the user before redirecting them to the main page
+And another button that cancels the order and goes straight back to the main page
+If the user navigates to unknown pages (Such as writing on the URL), redirect them to a generic "Page not found"
+Points
+Some things we would be looking out for in the app are:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Familiarity with using React and it's functionality
+Project/code structure and uniformity
+Dynamically fetching and displaying content
+Clearly defined models and it's usage
+Usage of Service, React-Router, Redux and unit testing
+Styling would be a great plus but concentrate on getting a functioning app first
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Dependencies
+The project was originally generated via ng generate so a majority of dependencies involve those generally shipped with angular
 
-### `yarn test`
+YARN
+React
+Bootstrap
+Jest and Enzyme (for testing)
+You can find the dependency list in the package.json and free to add any dependency that you want.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Requirements
+Implement the project scenario highlighted above
+Have the relevant test cases to ensure functionality
+Take advantage of React-Router, Redux  to display content

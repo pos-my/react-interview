@@ -2,7 +2,7 @@
 
 An React application that will be used as a starting guide for candidates to implement the assignment.
 
-To confirm the application can run, after cloning it and installing the dependencies (via npm), run ng serve and go to http://localhost:3000 to confirm it can run. Feel free to delete the existing code when making the implementation
+To confirm the application can run, after cloning it and installing the dependencies (via yarn), run npm start and go to http://localhost:3000 to confirm it can run. Feel free to delete the existing code when making the implementation
 
 ## The Application Scenario
 

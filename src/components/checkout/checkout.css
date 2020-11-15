@@ -1,0 +1,20 @@
+
+.pizzaName{
+    display: flex;
+}
+
+
+.highlight{
+    font-weight: 600;
+}
+
+.btn-process{
+    background-color: #5baeb3;
+    border-color: #5baeb3;
+    color:#ffffff ;
+    width: 100px;
+  }
+
+  .processRow{
+      float: right;
+  }

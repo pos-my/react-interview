@@ -1,0 +1,16 @@
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    padding: 20px;
+    
+
+  }
+  .card:hover{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  }
+ 
+  .deliveryType{
+    border-bottom: 1px solid #b4adad;
+    padding: 20px;
+  }

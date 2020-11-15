@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import { createHashHistory } from 'history';
 
 import HomeComponent from "../home/home";

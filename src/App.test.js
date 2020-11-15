@@ -1,11 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import thunk from "redux-thunk";
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import  * as actions  from "./store/actions/repositoryActions";
  
-import MyConnectedComponent from '.';
+import App from './App';
  
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
  
 describe('My Connected React-Redux Component', () => {
   let store;
@@ -13,21 +15,29 @@ describe('My Connected React-Redux Component', () => {
  
   beforeEach(() => {
     store = mockStore({
-      myState: 'sample text',
+      deliveryType:'',
+      pizzas:[]
     });
+ 
+    store.dispatch = jest.fn();
  
     component = renderer.create(
       <Provider store={store}>
-        <MyConnectedComponent />
+        <App />
       </Provider>
     );
   });
  
   it('should render with given state from Redux store', () => {
- 
+    expect(component.toJSON()).toMatchSnapshot();
   });
  
-  it('should dispatch an action on button click', () => {
- 
+  it('should dispatch an action selection of delivery type option', () => {    
+    renderer.act(() => {
+      var c = component.root.findAllByProps({name:'deliveryType'});
+      c[0].props.onChange({target:{value:"delivery"}});
+    });
+    
+    expect(store.dispatch).toHaveBeenCalledTimes(1);  
   });
 });

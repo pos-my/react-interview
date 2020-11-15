@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="jumbotron"
+  >
+    <h2>
+      Rock on Pizza Delivery
+    </h2>
+    <p>
+      Welcome Rock On Pizza delivery.
+    </p>
+  </div>
+  <div
+    className="row deliveryType"
+  >
+    <div
+      className="col-md-6 col-sm-1"
+    >
+      <label
+        className="card"
+      >
+        <input
+          checked={false}
+          className="radio"
+          name="deliveryType"
+          onChange={[Function]}
+          readOnly={true}
+          type="radio"
+          value="delivery"
+        />
+        <span>
+          Delivery
+        </span>
+      </label>
+    </div>
+    <div
+      className="col-md-6 col-sm-1"
+    >
+      <label
+        className="card"
+      >
+        <input
+          checked={false}
+          className="radio"
+          name="deliveryType"
+          onChange={[Function]}
+          readOnly={true}
+          type="radio"
+          value="pickup"
+        />
+        <span>
+          Pick Up
+        </span>
+      </label>
+    </div>
+  </div>
+</div>
+`;

@@ -55,7 +55,7 @@ class ContentComponent extends React.Component {
           </div>            
         </div> 
         {
-            this.props.orderInformation.deliveryType!=""? <PizzaType></PizzaType> :null                          
+            this.props.orderInformation.deliveryType !== ""? <PizzaType></PizzaType> :null                          
         }
         
       </Aux>                  

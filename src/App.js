@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import './assets/css/main.css';
+import './assets/css/popupjs.css';
+
+import OrderMain from './screens/order/Main';
+import OrderPizzaSelect from './screens/order/PizzaSelect';
+import OrderCheckout from './screens/order/Checkout';
+import RedirectUnfound from './screens/redirect/Unfound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path={"/"} component={OrderMain} />
+        <Route exact path={"/selection"} component={OrderPizzaSelect} />
+        <Route exact path={"/checkout"} component={OrderCheckout} />
+
+        <Route exact path={"/unfound"} component={RedirectUnfound} />
+        <Redirect to={"/unfound"} />
+      </Switch>
+    </Router>
   );
 }
 

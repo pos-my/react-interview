@@ -1,0 +1,8 @@
+.container-div{ 
+    Display: flex;
+    Height: 80vh;
+    Width: 80vw; 
+    Align-Items: center;
+    padding-left: 300px;
+    Justify-Content: centre;
+    }

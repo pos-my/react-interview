@@ -1,4 +1,4 @@
-export const cart = (state = { EmtypCart: true }, action) => {
+export const cart = (state = { EmtypCart: true , CartInfo : []}, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case "AddToCart":

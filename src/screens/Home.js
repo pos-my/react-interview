@@ -33,18 +33,18 @@ function Home() {
   const items = useSelector((state) => state.items);
   const itemsArray = Object.values(items);
   const canCheckout = useSelector((state) => {
-    let canCheckout = false;
+    let isAbleToCheckout = false;
     Object.values(state.items).forEach((item) => {
       if (item.quantity !== 0) {
-        canCheckout = true;
+        isAbleToCheckout = true;
       }
     });
-    return canCheckout;
+    return isAbleToCheckout;
   });
 
-  const handleOnClick = (shippingType) => {
+  const handleOnClick = (shippingMethod) => {
     setShow(false);
-    dispatch(setShippingType(shippingType));
+    dispatch(setShippingType(shippingMethod));
   };
 
   const handleOnItemChange = (item) => {

@@ -23,9 +23,9 @@ function CustomRadioGroup({ id, label, controls, defaultValue, onChange }) {
   const [value, setValue] = React.useState(defaultValue);
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    setValue(value);
-    onChange(id, value);
+    const { value: selectedValue } = e.target;
+    setValue(selectedValue);
+    onChange(id, selectedValue);
   };
 
   return (
@@ -44,16 +44,18 @@ function CustomRadioGroup({ id, label, controls, defaultValue, onChange }) {
         value={value}
         onChange={handleChange}
       >
-        {controls.map(({ id, value, label }) => (
-          <FormControlLabel
-            data-testid={`control-${id}`}
-            key={id}
-            value={value}
-            control={<Radio color="secondary" size="small" />}
-            label={label}
-            classes={{ label: classes.label }}
-          />
-        ))}
+        {controls.map(
+          ({ id: controlID, value: controlValue, label: controlLabel }) => (
+            <FormControlLabel
+              data-testid={`control-${controlID}`}
+              key={controlID}
+              value={controlValue}
+              control={<Radio color="secondary" size="small" />}
+              label={controlLabel}
+              classes={{ label: classes.label }}
+            />
+          )
+        )}
       </RadioGroup>
     </FormControl>
   );

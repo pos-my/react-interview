@@ -1,7 +1,7 @@
-import Card from "./Card";
-import RadioGroup from "./RadioGroup";
+import Card from "./CustomCard";
+import RadioGroup from "./CustomRadioGroup";
 import Quantity from "./Quantity";
 import CheckoutItem from "./CheckoutItem";
-import Dialog from "./Dialog";
+import Dialog from "./CustomDialog";
 
 export { Card, RadioGroup, Quantity, CheckoutItem, Dialog };

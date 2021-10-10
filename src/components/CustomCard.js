@@ -10,7 +10,7 @@ import {
   CardActions,
   CardActionArea,
   Currency,
-} from "../components/Material";
+} from "./Material";
 import { RadioGroup, Quantity } from "./index";
 import { sizes, cheeseOptions } from "../data";
 import { cheeseTypes } from "../data/constants";

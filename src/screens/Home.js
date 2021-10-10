@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { makeStyles, Grid, Button } from "../components/Material";
-import { Card } from "../components";
+import { makeStyles, Grid } from "../components/Material";
+import { Card, Button } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { updateItem } from "../reducers/items";
 import { setShippingType } from "../reducers/shippingType";
@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
   },
   button: {
-    marginLeft: 5,
-    marginRight: 5,
+    marginTop: 10,
   },
 }));
 
@@ -67,27 +66,25 @@ function Home() {
         {show ? (
           <Grid>
             <Button
-              data-testid="pickup-button"
+              dataTestID="pickup-button"
+              label="Pick Up"
               color="primary"
               size="large"
-              variant="contained"
+              fullWidth={true}
               className={classes.button}
               onClick={() => handleOnClick(shippingTypes.PICK_UP)}
-            >
-              Pick Up
-            </Button>
+            />
             <Button
-              data-testid="delivery-button"
-              color="secondary"
+              dataTestID="delivery-button"
+              label="Delivery"
               size="large"
-              variant="contained"
+              fullWidth={true}
               className={classes.button}
               onClick={() => handleOnClick(shippingTypes.DELIVERY)}
-            >
-              Delivery
-            </Button>
+            />
           </Grid>
         ) : null}
+
         {shippingType ? (
           <Grid
             container
@@ -105,17 +102,15 @@ function Home() {
                 ))}
               </Grid>
             </Grid>
-            {canCheckout ? (
-              <Button
-                color="secondary"
-                variant="contained"
-                fullWidth
-                className={classes.checkoutButton}
-                onClick={handleOnCheckout}
-              >
-                Checkout
-              </Button>
-            ) : null}
+            <Button
+              show={canCheckout}
+              size="large"
+              fullWidth={true}
+              label="Checkout"
+              className={classes.checkoutButton}
+              dataTestID="checkout-button"
+              onClick={handleOnCheckout}
+            />
           </Grid>
         ) : null}
       </Grid>

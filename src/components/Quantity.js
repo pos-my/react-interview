@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { makeStyles, Grid, Button, TextField, Typography } from "./Material";
+import { makeStyles, Grid, TextField, Typography } from "./Material";
+import { Button } from "./index";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -58,15 +59,13 @@ function Quantity({ id, onChange }) {
       </Grid>
       <Grid container>
         <Button
-          data-testid="decrement-button"
+          label="-"
+          dataTestID="decrement-button"
           size="small"
-          color="secondary"
-          variant="contained"
           className={classes.leftButton}
           onClick={() => handleOnClick("decrement")}
-        >
-          -
-        </Button>
+        />
+
         <TextField
           data-testid="value"
           id={id.toString()}
@@ -78,15 +77,12 @@ function Quantity({ id, onChange }) {
           value={value}
         />
         <Button
-          data-testid="increment-button"
+          label="+"
+          dataTestID="increment-button"
           size="small"
-          color="secondary"
-          variant="contained"
           className={classes.rightButton}
           onClick={() => handleOnClick("increment")}
-        >
-          +
-        </Button>
+        />
       </Grid>
     </Grid>
   );

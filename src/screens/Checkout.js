@@ -6,10 +6,9 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Button,
   Typography,
 } from "../components/Material";
-import { CheckoutItem, Dialog } from "../components";
+import { CheckoutItem, Dialog, Button } from "../components";
 import { shippingTypes } from "../data/constants";
 import { useHistory } from "react-router-dom";
 import { setShippingType } from "../reducers/shippingType";
@@ -100,19 +99,18 @@ function Checkout() {
           <Grid container justifyContent="space-between">
             <Grid item>
               <Button
-                fullWidth
-                variant="contained"
+                dataTestID="cancel-button"
+                label="Cancel"
+                color="default"
+                fullWidth={true}
                 className={classes.button}
                 onClick={handleOnCancel}
-              >
-                Cancel
-              </Button>
+              />
             </Grid>
             <Grid item>
               <Button
-                fullWidth
-                variant="contained"
-                color="secondary"
+                label="Proceed"
+                dataTestID="proceed-button"
                 className={classes.button}
                 onClick={handleOnProceed}
               >

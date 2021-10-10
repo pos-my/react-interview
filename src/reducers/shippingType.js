@@ -7,8 +7,7 @@ const shippingTypeSlice = createSlice({
   initialState,
   reducers: {
     setShippingType: (state, action) => {
-      state = action.payload;
-      return state;
+      return action.payload;
     },
   },
 });

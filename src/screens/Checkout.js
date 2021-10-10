@@ -52,7 +52,7 @@ function Checkout() {
   const getShippingTypeText = (type) =>
     type === shippingTypes.DELIVERY ? "Delivery" : "Pick Up";
 
-  const getTotalText = (totalPrice) => "Total Amount: $" + totalPrice;
+  const getTotalText = (total) => "Total Amount: $" + total;
 
   const handleOnCancel = () => {
     dispatch(setShippingType(""));

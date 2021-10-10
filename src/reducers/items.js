@@ -14,8 +14,11 @@ const itemsSlice = createSlice({
       };
       Object.assign(state, newState);
     },
+    resetItems: (state) => {
+      Object.assign(state, initialState);
+    },
   },
 });
 
-export const { updateItem } = itemsSlice.actions;
+export const { updateItem, resetItems } = itemsSlice.actions;
 export default itemsSlice.reducer;

@@ -12,6 +12,7 @@ import { CheckoutItem, Dialog, Button } from "../components";
 import { shippingTypes } from "../data/constants";
 import { useHistory } from "react-router-dom";
 import { setShippingType } from "../reducers/shippingType";
+import { resetItems } from "../reducers/items";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +56,7 @@ function Checkout() {
 
   const handleOnCancel = () => {
     dispatch(setShippingType(""));
+    dispatch(resetItems());
     history.replace("/");
   };
 
@@ -62,6 +64,7 @@ function Checkout() {
     setShowConfirmation(true);
     setTimeout(() => {
       dispatch(setShippingType(""));
+      dispatch(resetItems());
       history.replace("/");
     }, 2000);
   };

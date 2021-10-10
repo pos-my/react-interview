@@ -36,23 +36,23 @@ function CustomCard({ item, onChange }) {
   const classes = useStyles();
   const { id, name, price, size, cheese, image } = item;
 
-  const handleSizeChange = (id, value) => {
+  const handleSizeChange = (itemID, value) => {
     onChange({
-      id,
+      id: itemID,
       size: value,
     });
   };
 
-  const handleCheeseOptionsChange = (id, value) => {
+  const handleCheeseOptionsChange = (itemID, value) => {
     onChange({
-      id,
+      id: itemID,
       cheese: value === cheeseTypes.YES ? true : false,
     });
   };
 
-  const handleQuantityChange = (id, value) => {
+  const handleQuantityChange = (itemID, value) => {
     onChange({
-      id,
+      id: itemID,
       quantity: value,
     });
   };

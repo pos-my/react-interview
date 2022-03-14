@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+// import logo from './logo.svg';
+import "./App.css";
+import Header from "./common/components/Header";
+import Menu from "./pages/menu/Menu";
+import Option from "./pages/menu/option/option";
+import Checkout from "./pages/checkout/Checkout";
+import NoMatch from "./pages/nomatch/NoMatch";
+
+import { useSelector } from "react-redux";
+
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
+  const cartStatus = useSelector((state) => state.cartReducer);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={cartStatus.deliveryType === "-" ? <Option/> : <Menu />} />
+        <Route path="/checkout" element={cartStatus.cart.length === 0 ? 
+                                                    <><br/><b>Empty Cart</b><br/>Back to <Link to="/">Order</Link> Page</> 
+                                                    :
+                                                    <Checkout />} />
+        <Route path="*" element={<NoMatch />} />
+
+      </Routes>
     </div>
   );
 }

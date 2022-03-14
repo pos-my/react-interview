@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { emptyCart } from "../../common/actions";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -7,10 +9,22 @@ function Checkout() {
   const cartStatus = useSelector((state) => state.cartReducer);
   const itemList = useSelector((state) => state.itemReducer);
 
-  const dispatch   = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const clearCart = () => {
-    dispatch(emptyCart())
+    dispatch(emptyCart());
+  };
+  const genRandom = () => {
+    return Math.random().toString(36).substring(2,7);
   }
+
+  useEffect(() => {
+    let onClose = document.getElementById('confirm-order');
+    onClose.addEventListener('hidden.bs.modal', (event) => {
+    clearCart();
+    navigate("/");
+  })
+  });
 
   return (
     <div>
@@ -65,12 +79,51 @@ function Checkout() {
               </p>
             </li>
           ))}
-          <li className="list-group-item" ><h1>${cartStatus.total}</h1></li>
+          <li className="list-group-item">
+            <h1>${cartStatus.total}</h1>
+          </li>
         </ul>
         <Link to="/">
           <button onClick={clearCart}>Cancel</button>
         </Link>
-        <button>Confirm?</button>
+
+        {/* <!-- Button trigger modal --> */}
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#confirm-order"
+        >
+          Confirm?
+        </button>
+
+        {/* <!-- Modal --> */}
+        <div
+          className="modal fade"
+          id="confirm-order"
+          tabIndex={"-1"}
+          aria-labelledby="confirm-orderLabel"
+          aria-hidden="true"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="confirm-orderLabel">
+                  ORDER ID : <b>{genRandom()}</b>
+                </h5>
+              </div>
+              <div className="modal-body">
+                <p>Thanks for puchasing with us! <br/>
+                   Please state your order ID if requested.</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Home</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     </div>
   );

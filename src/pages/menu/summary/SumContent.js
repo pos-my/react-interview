@@ -14,7 +14,7 @@ function SumContent() {
 
   return (
     <>
-    <ul className="list-group list-group-flush">
+    <ul data-test="summary-list" className="list-group list-group-flush">
       {
         cartStatus.cart.map((item) => (
           <li className="list-group-item" key={item.id}>
@@ -26,7 +26,7 @@ function SumContent() {
         ))
       }
     </ul>
-    <Link to="/checkout"><button>Check Out</button></Link>
+    <Link to="/checkout"><button className='btn btn-danger'>Check Out</button></Link>
     </>
   )
 }

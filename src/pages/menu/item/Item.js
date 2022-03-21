@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addCart, sumTotal } from '../../../common/actions/index';
+import PropTypes from 'prop-types';
+import "./Item.css";
 
 function Item(probs) {
 
@@ -13,20 +15,12 @@ function Item(probs) {
 
   const addToCart = (event) => {
     event.preventDefault();
-
-    // var elmnt = document.getElementById("myAnchor");
-    // var attr = elmnt.getAttributeNode("target").value;
     
     const menuId      = event.target.querySelector("#menu-id").value;
     const pizzaSize   = event.target.querySelector("#pizza-size").value;
     const extraCheese = event.target.querySelector("#extra-cheese").checked;
     const quantity    = event.target.querySelector("#pizza-quantity").value;
-    // {
-    //   itemId: number
-    //   size: number
-    //   extraCheese: boolean
-    //   quantity: 
-    // }
+
     const orderDetail = {
       itemId: parseInt(menuId),
       size: pizzaSize,
@@ -37,7 +31,7 @@ function Item(probs) {
   }
   return (
     <>
-      <div className="card" style={{ width: "10rem", cursor: "pointer" }} data-bs-toggle="modal" data-bs-target={"#cart"+probs.item.id}>
+      <div className="card item-spacing" data-bs-toggle="modal" data-bs-target={"#cart"+probs.item.id}>
         <img src={probs.item.import} width="100%" height="auto" alt="Logo" />
         <div className="card-body">
           <h6 className="card-title">
@@ -57,10 +51,10 @@ function Item(probs) {
             <div className="modal-body">
               <form style={{textAlign:'left'}} id={"order-form-"+probs.item.id} onSubmit={ (e) => [addToCart(e),sumAll(e)] }>
 
-                <input type={"number"} id="menu-id" defaultValue={probs.item.id} hidden/>
+                <input data-test="menu-id-form" type={"number"} id="menu-id" defaultValue={probs.item.id} hidden/>
                 {/* size */}
                 <label htmlFor="pizza-size" className="form-label">Size:</label>
-                <select id="pizza-size" className="form-select" aria-label="Default select example">
+                <select data-test="size-form" id="pizza-size" className="form-select" aria-label="Default select example">
                   <option value="small">Small</option>
                   <option value="medium">Medium</option>
                   <option value="large">Large</option>
@@ -68,7 +62,7 @@ function Item(probs) {
 
                 {/* extra cheese */}
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" id="extra-cheese"/>
+                  <input data-test="extra-cheese-form" className="form-check-input" type="checkbox" id="extra-cheese"/>
                   <label className="form-check-label" htmlFor="extra-cheese">
                     Extra Cheese?
                   </label>
@@ -76,13 +70,13 @@ function Item(probs) {
 
                 {/* quantity */}
                 <label htmlFor="pizza-quantity" className="form-label">Quantity</label>
-                <input type="number" className="form-control" id="pizza-quantity" defaultValue={1}></input>
+                <input data-test="quantity-form" type="number" className="form-control" id="pizza-quantity" defaultValue={1}></input>
               </form>
             </div>
 
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" className="btn btn-primary" form={"order-form-"+probs.item.id}>Add to Cart</button>
+              <button data-test="submit-form" type="submit" className="btn btn-primary" form={"order-form-"+probs.item.id}>Add to Cart</button>
             </div>
           </div>
         </div>
@@ -90,5 +84,15 @@ function Item(probs) {
     </>
   );
 }
+
+Item.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    imgurl: PropTypes.string,
+    import: PropTypes.string,
+  }),
+};
 
 export default Item;

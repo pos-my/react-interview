@@ -1,3 +1,4 @@
+import "./Checkout.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { emptyCart } from "../../common/actions";
@@ -80,17 +81,17 @@ function Checkout() {
             </li>
           ))}
           <li className="list-group-item">
-            <h1>${cartStatus.total}</h1>
+            <h1>TOTAL : ${cartStatus.total}</h1>
           </li>
         </ul>
         <Link to="/">
-          <button onClick={clearCart}>Cancel</button>
+          <button className="btn btn-outline-secondary checkout-spacing-button" onClick={clearCart}>Cancel</button>
         </Link>
 
         {/* <!-- Button trigger modal --> */}
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-danger checkout-spacing-button"
           data-bs-toggle="modal"
           data-bs-target="#confirm-order"
         >
@@ -119,7 +120,7 @@ function Checkout() {
                    Please state your order ID if requested.</p>
               </div>
               <div className="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Home</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Home</button>
               </div>
             </div>
           </div>

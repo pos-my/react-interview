@@ -1,9 +1,8 @@
 import React from "react";
-// import logo from './logo.svg';
 import "./App.css";
 import Header from "./common/components/Header";
 import Menu from "./pages/menu/Menu";
-import Option from "./pages/menu/option/option";
+import Option from "./pages/menu/option/Option";
 import Checkout from "./pages/checkout/Checkout";
 import NoMatch from "./pages/nomatch/NoMatch";
 

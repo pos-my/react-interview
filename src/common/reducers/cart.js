@@ -48,14 +48,14 @@ const cartReducer = (state = cartState, action) => {
             deliveryType: '-',
             total: 0,
             cart: []
-        }
+        };
     case "TOTAL":
         if(state.cart.length === 0){
             return {
                 ...state,
                 total: 0
             }
-        } 
+        }; 
         const itemValue = state.cart.map( (item) => {
             return action.payload[item.itemId-1].price * item.quantity;
         } );

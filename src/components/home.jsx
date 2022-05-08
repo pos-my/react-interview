@@ -19,8 +19,8 @@ const Home = () => {
             <Typography variant={"h3"}>Pizza</Typography>
             <br/>
             <Typography variant={"h6"}>Select Delivery Method</Typography>
-            <Button variant={"contained"} onClick={onOrderTypeSelect(PICKUP)}>Pick Up</Button>&nbsp;&nbsp;OR&nbsp;&nbsp;
-            <Button variant={"contained"} onClick={onOrderTypeSelect(DELIVERY)}>Delivery</Button>
+            <Button id="btnPickup"  variant={"contained"} onClick={onOrderTypeSelect(PICKUP)}>Pick Up</Button>&nbsp;&nbsp;OR&nbsp;&nbsp;
+            <Button data-testid="btnDelivery" variant={"contained"} onClick={onOrderTypeSelect(DELIVERY)}>Delivery</Button>
 
         </div>
     );

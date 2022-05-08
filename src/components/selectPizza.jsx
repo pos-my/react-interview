@@ -14,7 +14,7 @@ import {
     Typography
 } from "@mui/material";
 import {LARGE, MEDIUM, SMALL} from "../utils/constants";
-import {Order} from "../models/Order";
+import {Order} from "../models/order";
 import {addNewOrder, removeOrder} from "../service/orderService";
 import {useNavigate} from "react-router-dom";
 
@@ -62,7 +62,8 @@ const SelectPizza = () => {
 
     if (!deliveryType) {
         return (
-            <Alert severity={"error"}>No delivery method selected, click <Link href="/">here</Link> to return home</Alert>
+            <Alert data-testid="no-delivery-method-alert" severity={"error"}>No delivery method selected, click <Link
+                href="/">here</Link> to return home</Alert>
         )
     }
 
@@ -80,14 +81,18 @@ const SelectPizza = () => {
                     }
                     {pizzaFetchStatus === "COMPLETED" &&
                     <div>
-                        <table>
+                        <table border="1" cellPadding="5" cellSpacing="0">
                             <thead>
-                                <tr><td><b>Name</b></td><td><b>Price</b></td></tr>
+                            <tr>
+                                <td><b>Name</b></td>
+                                <td><b>Price</b></td>
+                            </tr>
                             </thead>
                             <tbody>
                             {pizzas.map((pizza) => (
                                 <tr key={pizza.id}>
-                                    <td><Link href="/" onClick={onSelectPizza(pizza)}>{pizza.name}</Link></td>
+                                    <td><Link role="select-pizza-link" href="/"
+                                              onClick={onSelectPizza(pizza)}>{pizza.name}</Link></td>
                                     <td>{pizza.price}$</td>
                                 </tr>
                             ))}
@@ -95,7 +100,7 @@ const SelectPizza = () => {
                         </table>
                         <br/>
                         <Typography variant={"h6"}>Cart</Typography>
-                        <table>
+                        <table border="1" cellPadding="3" cellSpacing="0">
                             <thead>
                             <tr>
                                 <td><b>Name</b></td>
@@ -107,22 +112,27 @@ const SelectPizza = () => {
                             </thead>
                             <tbody>
                             {orders.map((order, index) => (
-                                <tr key={index}>
+                                <tr role="cart-table-tr" key={index}>
                                     <td>{getPizzaName(order.pizzaId)}</td>
                                     <td>{order.size}</td>
                                     <td>{order.extraCheese ? 'Yes' : 'No'}</td>
                                     <td>{order.quantity}</td>
-                                    <td><Button size={"small"} variant={"contained"} onClick={() => dispatch(removeOrder(index))}>Remove</Button></td>
+                                    <td><Button size={"small"} variant={"contained"}
+                                                onClick={() => dispatch(removeOrder(index))}>Remove</Button></td>
                                 </tr>
                             ))}
                             {orders.length === 0 &&
-                                <tr><td colspan={5}><center>No item(s)</center></td></tr>
+                            <tr>
+                                <td colSpan={5}>
+                                    <center>No item(s)</center>
+                                </td>
+                            </tr>
                             }
                             </tbody>
                         </table>
                         <br/>
                         {orders.length > 0 &&
-                            <Button variant={"contained"} onClick={() => navigate('/checkout')}>Checkout</Button>
+                        <Button data-testid="checkout-button" variant={"contained"} onClick={() => navigate('/checkout')}>Checkout</Button>
                         }
                     </div>
                     }
@@ -136,12 +146,13 @@ const SelectPizza = () => {
                         <FormControl>
                             <InputLabel id="size-select-label">Size</InputLabel>
                             <Select
+                                data-testid="size-select"
                                 labelId="size-select-label"
                                 id="size-select"
                                 value={size}
                                 label="Size"
                                 onChange={(event) => setSize(event.target.value)}
-                                size={SMALL}
+                                size="small"
                             >
                                 <MenuItem value={SMALL}>Small</MenuItem>
                                 <MenuItem value={MEDIUM}>Medium</MenuItem>
@@ -152,17 +163,22 @@ const SelectPizza = () => {
                     <div>
                         <FormControlLabel
                             control={
-                                <Checkbox checked={extraCheese} onChange={(event) => setExtraCheese(event.target.checked)} name="extraCheese" />
+                                <Checkbox checked={extraCheese}
+                                          data-testid="extra-cheese-checkbox"
+                                          onChange={(event) => setExtraCheese(event.target.checked)}
+                                          name="extraCheese"/>
                             }
                             label="Extra Cheese"
                         />
                     </div>
                     <div>
-                        Quantity:
-                        <TextField size={"small"} value={quantity} onChange={onQuantityChange}/>
+                        Quantity:&nbsp;
+                        <TextField style={{marginTop: '-3px'}} size="small" value={quantity}
+                                   data-testid="quantity-textfield"
+                                   onChange={onQuantityChange}/>
                     </div>
                     <br/>
-                    <Button variant={"contained"} onClick={onAddOrder}>Add To Cart</Button>&nbsp;&nbsp;
+                    <Button variant={"contained"} data-testid="add-to-cart-button" onClick={onAddOrder}>Add To Cart</Button>&nbsp;&nbsp;
                     <Button variant={"contained"} onClick={() => resetSelect()}>Back</Button>
                 </div>
             }

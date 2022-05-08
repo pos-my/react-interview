@@ -6,7 +6,6 @@ const NotFound = () => {
         <div>
             <center>
                 <Typography variant={"h4"}>Not Found</Typography>
-
             </center>
         </div>
     );

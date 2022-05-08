@@ -51,7 +51,7 @@ const Checkout = () => {
 
     if (orders.length === 0) {
         return (
-            <Alert severity={"error"}>No order selected, click <Link href="/">here</Link> to return home</Alert>
+            <Alert data-testid="no-orders-alert" severity={"error"}>No order selected, click <Link href="/">here</Link> to return home</Alert>
         )
     }
 
@@ -75,7 +75,7 @@ const Checkout = () => {
     }
 
     return (
-        <div>
+        <div style={{width: '600px'}}>
             <Typography variant={"h3"}>Pizza</Typography>
             <Typography variant={"h6"}>Checkout</Typography>
             <TableContainer component={Paper}>
@@ -94,12 +94,13 @@ const Checkout = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <br/>
             <Alert severity={"info"}>
                 <div><b>Method of Delivery:</b> {deliveryType}</div>
                 <div><b>Total Price:</b> {getTotalPrice()}$</div>
             </Alert>
             <br/>
-            <Button variant={"contained"} onClick={onConfirmOrder}>Confirm Order</Button>&nbsp;&nbsp;OR&nbsp;&nbsp;
+            <Button variant={"contained"} data-testid="confirm-order-button" onClick={onConfirmOrder}>Confirm Order</Button>&nbsp;&nbsp;OR&nbsp;&nbsp;
             <Button variant={"contained"} onClick={onCancelOrder}>Cancel Order</Button>
         </div>
     );

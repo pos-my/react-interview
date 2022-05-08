@@ -1,4 +1,4 @@
-import {Pizza} from "../models/Pizza";
+import {Pizza} from "../models/pizza";
 
 export const SMALL = "Small";
 export const MEDIUM = "Medium";

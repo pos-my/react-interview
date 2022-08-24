@@ -56,7 +56,7 @@ const Cart = ({ data, handleClick, title }) => (
 Cart.defaultProps = {
   data: undefined,
   handleClick: undefined,
-  title: "List of selected pizza",
+  title: "Review your selected pizza",
 };
 
 export default memo(Cart);

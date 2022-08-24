@@ -1,6 +1,4 @@
 import { useEffect, Suspense, lazy } from "react";
-import Button from "@mui/material/Button";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listService } from "../utils";
@@ -9,6 +7,7 @@ import Layout from "../components/Layout";
 import withService from "../hoc/withService";
 import useFetchPizza from "../hook/useFetchPizza";
 import { updatePizza, updateSelectedPizza } from "../redux/services";
+import TopButton from "../components/TopButton";
 
 const ActiveOrder = lazy(() => import("../components/ActiveOrder"));
 const Cart = lazy(() => import("../components/Cart"));
@@ -60,18 +59,14 @@ const Order = () => {
     }
   };
 
+  const handleCheckout = () => {
+    navigate("/review");
+  };
+
   return (
     <Layout>
       <Suspense fallback={<span />}>
-        <div style={{ position: "absolute", top: 10, left: 10 }}>
-          <Button
-            variant="outlined"
-            onClick={handleBack}
-            startIcon={<ArrowBackIcon />}
-          >
-            Back To Service
-          </Button>
-        </div>
+        <TopButton handleClick={handleBack} />
         <div
           style={{
             display: "flex",
@@ -125,7 +120,7 @@ const Order = () => {
           </div>
         </div>
         {selectedPizzaData && selectedPizzaData?.length > 0 ? (
-          <Cart data={selectedPizzaData} />
+          <Cart data={selectedPizzaData} handleClick={handleCheckout} />
         ) : null}
       </Suspense>
     </Layout>

@@ -6,6 +6,7 @@ import { store } from "./redux/store";
 const Home = lazy(() => import("./views/Home"));
 const Order = lazy(() => import("./views/Order"));
 const NotFound = lazy(() => import("./views/NotFound"));
+const Review = lazy(() => import("./views/Review"));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<Order />} />
+              <Route path="/review" element={<Review />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

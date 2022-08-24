@@ -13,12 +13,13 @@ const useFetchPizza = () => {
           const request = await fetch("/data/pizza.json");
           const response = await request.json();
           setData(response);
-          console.log({ response });
         } catch (error) {
           setError(error);
           setLoading(false);
         } finally {
-          setLoading(false);
+          setTimeout(() => {
+            setLoading(false);
+          }, 500);
         }
       };
 

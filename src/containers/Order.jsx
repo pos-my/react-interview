@@ -8,15 +8,15 @@ import Layout from "../components/Layout";
 import ActiveOrder from "../components/ActiveOrder";
 import withService from "../hoc/withService";
 import useFetchPizza from "../hook/useFetchPizza";
+import ValidateData from "../components/ValidateData";
 
 const Order = () => {
-  const { data } = useFetchPizza();
+  const { data, loading } = useFetchPizza();
   const navigate = useNavigate();
   const servicesData = useSelector(services) || "";
   const getService = listService?.find(
     (listOfServices) => listOfServices.actionValue === servicesData
   );
-  console.log({ data });
 
   const handleBack = () => {
     navigate(-1);
@@ -36,6 +36,7 @@ const Order = () => {
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           height: "100%",
@@ -46,6 +47,34 @@ const Order = () => {
           description={getService?.description}
           imageSource={getService.imageSource}
         />
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {!loading && data && data?.length > 0 ? (
+            data?.map((pizzaItem) => (
+              <div key={pizzaItem.id} style={{ margin: 5 }}>
+                <ActiveOrder
+                  customPaperStyle={{
+                    width: 150,
+                    height: 150,
+                    cursor: "pointer",
+                  }}
+                  description={`$${pizzaItem.price}`}
+                  imageSource={""}
+                  title={pizzaItem.name}
+                  titleConfig={{
+                    variant: "body2",
+                    style: { textAlign: "center" },
+                  }}
+                />
+              </div>
+            ))
+          ) : (
+            <ValidateData loading={loading} />
+          )}
+        </div>
       </div>
     </Layout>
   );

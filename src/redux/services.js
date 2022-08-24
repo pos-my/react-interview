@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   services: "",
-  pizza: [],
+  pizza: null,
 };
 
 export const services = createSlice({
@@ -12,9 +12,12 @@ export const services = createSlice({
     updateService: (state, action) => {
       state.services = action.payload;
     },
+    updatePizza: (state, action) => {
+      state.pizza = action.payload;
+    },
   },
 });
 
-export const { updateService } = services.actions;
+export const { updateService, updatePizza } = services.actions;
 
 export default services.reducer;

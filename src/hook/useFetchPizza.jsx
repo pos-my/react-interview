@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const useFetchPizza = () => {
+const useFetchPizza = ({ mainData }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!data) {
+    if (!data && !mainData) {
       const handleFetch = async () => {
         setLoading(true);
         try {
@@ -25,7 +25,7 @@ const useFetchPizza = () => {
 
       handleFetch();
     }
-  }, [data]);
+  }, [data, mainData]);
 
   return { loading, error, data };
 };

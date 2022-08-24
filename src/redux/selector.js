@@ -9,3 +9,8 @@ export const listPizza = createSelector(
   (state) => state.services,
   (services) => services.pizza
 );
+
+export const selectedPizza = createSelector(
+  (state) => state.services,
+  (services) => services.selectedPizza
+);

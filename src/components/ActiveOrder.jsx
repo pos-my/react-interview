@@ -5,12 +5,18 @@ import { memo } from "react";
 const ActiveOrder = ({
   customPaperStyle,
   description,
+  handleSelectedItem,
   imageSource,
+  itemId,
   subtitleConfig,
   title,
   titleConfig,
 }) => {
   const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+
+  const onHandleClick = (param) => () => {
+    if (handleSelectedItem) handleSelectedItem(param);
+  };
 
   return (
     <Paper
@@ -20,6 +26,7 @@ const ActiveOrder = ({
         overflow: "hidden",
         ...customPaperStyle,
       }}
+      onClick={onHandleClick(itemId)}
     >
       {imageSource && imageSource?.length > 0 ? (
         <img
@@ -83,6 +90,8 @@ ActiveOrder.defaultProps = {
   },
   description:
     "Place orders online and then pick up their purchases in the brick-and-mortar store, often within the same day.",
+  handleSelectedItem: undefined,
+  itemId: 0,
   imageSource: "/images/buyAtStore.jpg",
   subtitleConfig: { variant: "body1" },
   titleConfig: { variant: "h2" },

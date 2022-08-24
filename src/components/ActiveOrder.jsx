@@ -1,5 +1,6 @@
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import { memo } from "react";
 
 const ActiveOrder = ({ imageSource, title, description }) => {
   const formattedTitle = title.charAt(0).toUpperCase() + title.slice(1);
@@ -57,4 +58,4 @@ ActiveOrder.defaultProps = {
     "Place orders online and then pick up their purchases in the brick-and-mortar store, often within the same day.",
 };
 
-export default ActiveOrder;
+export default memo(ActiveOrder);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Layout = ({ children }) => (
   <div
     style={{
@@ -10,4 +12,4 @@ const Layout = ({ children }) => (
   </div>
 );
 
-export default Layout;
+export default memo(Layout);

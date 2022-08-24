@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -54,4 +54,4 @@ Welcome.defaultProps = {
   listItem: listService,
 };
 
-export default Welcome;
+export default memo(Welcome);

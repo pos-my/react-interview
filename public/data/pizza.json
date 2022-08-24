@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Chonky Chicken",
+    "price": 10,
+    "availableSize": ["small", "medium", "large"],
+    "withCheese": true
+  },
+  {
+    "id": 2,
+    "name": "Beef Barbeque",
+    "price": 12,
+    "availableSize": ["small", "medium"],
+    "withCheese": true
+  },
+  {
+    "id": 3,
+    "name": "Hawking Hawaiian",
+    "price": 10,
+    "availableSize": ["medium", "large"],
+    "withCheese": true
+  },
+  {
+    "id": 4,
+    "name": "Margeret's Margherita",
+    "price": 8,
+    "availableSize": ["small", "large"],
+    "withCheese": true
+  },
+  {
+    "id": 5,
+    "name": "Vegan Villa Vista",
+    "price": 8,
+    "availableSize": ["small", "medium", "large"],
+    "withCheese": false
+  }
+]

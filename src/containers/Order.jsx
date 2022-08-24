@@ -7,13 +7,16 @@ import { services } from "../redux/selector";
 import Layout from "../components/Layout";
 import ActiveOrder from "../components/ActiveOrder";
 import withService from "../hoc/withService";
+import useFetchPizza from "../hook/useFetchPizza";
 
 const Order = () => {
+  const { data } = useFetchPizza();
   const navigate = useNavigate();
   const servicesData = useSelector(services) || "";
   const getService = listService?.find(
     (listOfServices) => listOfServices.actionValue === servicesData
   );
+  console.log({ data });
 
   const handleBack = () => {
     navigate(-1);

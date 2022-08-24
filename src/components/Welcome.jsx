@@ -5,8 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { listService } from "../utils";
 
-const Welcome = ({ listItem, handleSelectType }) => {
+const Welcome = ({ buttonTitle, listItem, handleSelectType }) => {
   const onHandleSelectType = (param) => () => {
     if (handleSelectType) handleSelectType(param);
   };
@@ -38,7 +39,7 @@ const Welcome = ({ listItem, handleSelectType }) => {
           </CardContent>
           <CardActions>
             <Button size="small" onClick={onHandleSelectType(item.actionValue)}>
-              Order Now
+              {buttonTitle}
             </Button>
           </CardActions>
         </Card>
@@ -48,27 +49,9 @@ const Welcome = ({ listItem, handleSelectType }) => {
 };
 
 Welcome.defaultProps = {
+  buttonTitle: "Order Now",
   handleSelectType: undefined,
-  listItem: [
-    {
-      id: 0,
-      title: "Pick Up",
-      imageSource: "/buyAtStore.jpg",
-      imageAlt: "buyAtStore",
-      actionValue: "pickUp",
-      description:
-        "Place orders online and then pick up their purchases in the brick-and-mortar store, often within the same day.",
-    },
-    {
-      id: 1,
-      title: "Delivery",
-      imageSource: "/delivery.jpg",
-      imageAlt: "deliveryToCustomer",
-      actionValue: "delivery",
-      description:
-        "Retail food delivery is a courier service in which a restaurant, store, or independent food-delivery company delivers food to a customer.",
-    },
-  ],
+  listItem: listService,
 };
 
 export default Welcome;

@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { listService } from "../utils";
 import { services } from "../redux/selector";
 import Layout from "../components/Layout";
 import ActiveOrder from "../components/ActiveOrder";
@@ -9,8 +10,10 @@ import withService from "../hoc/withService";
 
 const Order = () => {
   const navigate = useNavigate();
-  const servicesData = useSelector(services);
-  console.log({ servicesData });
+  const servicesData = useSelector(services) || "";
+  const getService = listService?.find(
+    (listOfServices) => listOfServices.actionValue === servicesData
+  );
 
   const handleBack = () => {
     navigate(-1);
@@ -35,7 +38,11 @@ const Order = () => {
           height: "100%",
         }}
       >
-        <ActiveOrder />
+        <ActiveOrder
+          title={servicesData}
+          description={getService?.description}
+          imageSource={getService.imageSource}
+        />
       </div>
     </Layout>
   );

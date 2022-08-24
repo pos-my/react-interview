@@ -4,6 +4,7 @@ import { selectedPizza } from "../redux/selector";
 import Layout from "../components/Layout";
 import withReview from "../hoc/withReview";
 import TopButton from "../components/TopButton";
+import PizzaContent from "./PizzaContent";
 
 const Review = () => {
   const navigate = useNavigate();
@@ -17,7 +18,13 @@ const Review = () => {
   return (
     <Layout>
       <TopButton buttonTitle="Back to select pizza" handleClick={handleBack} />
-      Review
+      <div style={{ paddingTop: 70 }}>
+        {selectedPizzaData && selectedPizzaData.length > 0
+          ? selectedPizzaData?.map((item) => (
+              <PizzaContent key={item.id} parentData={item} />
+            ))
+          : null}
+      </div>
     </Layout>
   );
 };

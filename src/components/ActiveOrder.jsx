@@ -51,7 +51,7 @@ const ActiveOrder = ({ imageSource, title, description }) => {
 };
 
 ActiveOrder.defaultProps = {
-  imageSource: "buyAtStore.jpg",
+  imageSource: "/images/buyAtStore.jpg",
   title: "Pick Up",
   description:
     "Place orders online and then pick up their purchases in the brick-and-mortar store, often within the same day.",

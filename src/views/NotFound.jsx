@@ -10,7 +10,7 @@ const NotFound = () => (
   >
     <img
       alt="pageNotFound"
-      src="/pageNotFound.png"
+      src="/images/pageNotFound.png"
       style={{ width: 500, height: 400 }}
     />
   </div>

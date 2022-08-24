@@ -2,7 +2,7 @@ export const listService = [
   {
     id: 0,
     title: "Pick Up",
-    imageSource: "/buyAtStore.jpg",
+    imageSource: "/images/buyAtStore.jpg",
     imageAlt: "buyAtStore",
     actionValue: "pickUp",
     description:
@@ -11,7 +11,7 @@ export const listService = [
   {
     id: 1,
     title: "Delivery",
-    imageSource: "/delivery.jpg",
+    imageSource: "/images/delivery.jpg",
     imageAlt: "deliveryToCustomer",
     actionValue: "delivery",
     description:

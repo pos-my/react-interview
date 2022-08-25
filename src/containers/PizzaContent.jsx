@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ItemSummary from "../components/pizzaContent/ItemSummary";
 import CustomOption from "../components/pizzaContent/CustomOption";
 import CustomCheese from "../components/pizzaContent/CustomCheese";
+import DeleteAction from "../components/DeleteAction";
 
 export const toUpperCase = (param) => {
   return param.charAt(0).toUpperCase() + param.slice(1);
@@ -56,6 +57,12 @@ const PizzaContent = ({ parentData, handleUpdateOptions }) => {
     handleUpdateOptions(updatedListOfPizza, parentData.id);
   };
 
+  const handleDelete = (param) => () => {
+    const removeData = options.filter((item) => item.id !== param);
+    setOptions(removeData);
+    handleUpdateOptions(removeData, parentData.id);
+  };
+
   return (
     <div style={{ position: "relative", marginBottom: 20 }}>
       <Paper style={{ padding: 10 }}>
@@ -85,6 +92,7 @@ const PizzaContent = ({ parentData, handleUpdateOptions }) => {
                   item={item}
                   handleUpdatePizza={handleUpdatePizza}
                 />
+                <DeleteAction handleClick={handleDelete(item.id)} />
                 <Divider style={{ margin: "10px 0px 10px 0px" }} />
               </div>
             );

@@ -1,51 +1,86 @@
-import { Divider, Typography, Button } from "@mui/material";
-import { useState } from "react";
-import AddIcon from "@mui/icons-material/Add";
+import { Divider, Paper } from "@mui/material";
+import { useState, useEffect } from "react";
+import ItemSummary from "../components/pizzaContent/ItemSummary";
+import CustomOption from "../components/pizzaContent/CustomOption";
+import CustomCheese from "../components/pizzaContent/CustomCheese";
 
-const PizzaContent = ({ parentData }) => {
-  const [data, setData] = useState([parentData]);
+export const toUpperCase = (param) => {
+  return param.charAt(0).toUpperCase() + param.slice(1);
+};
 
-  const handleCloneData = (param) => {
-    setData([...data, parentData]);
+const PizzaContent = ({ parentData, handleUpdateOptions }) => {
+  let defaultSize = "";
+  if (parentData?.availableSize?.includes("small")) {
+    defaultSize = "Small";
+  } else if (parentData?.availableSize?.includes("medium")) {
+    defaultSize = "Medium";
+  } else if (parentData?.availableSize?.includes("large")) {
+    defaultSize = "Large";
+  }
+
+  const [options, setOptions] = useState([
+    { id: 0, size: defaultSize, withCheese: true },
+  ]);
+
+  useEffect(() => {
+    if (options) handleUpdateOptions(options, parentData.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options]);
+
+  const handleAdd = () => {
+    setOptions((prev) => [
+      ...prev,
+      { id: prev.length, size: defaultSize, withCheese: true },
+    ]);
+  };
+
+  const handleUpdatePizza = (id, value, toUpdate) => () => {
+    const findPizza = options?.find((pizza) => pizza.id === id);
+    const filterPizza = options?.filter((pizza) => pizza.id !== id);
+
+    if (toUpdate === "size") findPizza[toUpdate] = toUpperCase(value);
+    if (toUpdate === "withCheese") findPizza[toUpdate] = value;
+    const updatedListOfPizza = [...filterPizza, findPizza].sort(
+      (a, b) => a.id - b.id
+    );
+    setOptions(updatedListOfPizza);
   };
 
   return (
     <div style={{ position: "relative", marginBottom: 20 }}>
-      <div style={{ padding: "0px 0px 10px 0px" }}>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <Typography
-            style={{ display: "flex", alignItems: "center" }}
-            variant="body2"
-          >
-            {parentData?.name || "-"}
-          </Typography>
-          <div style={{ display: "flex", marginLeft: 20 }}>
-            <div
-              style={{
-                border: "1px solid gray",
-                borderRadius: 3,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: 50,
-                height: 30,
-                margin: "0px 5px 0px 5px",
-              }}
-            >
-              <Typography variant="body2">{data ? data?.length : 0}</Typography>
-            </div>
-            <Button
-              disableElevation
-              style={{ minWidth: 20 }}
-              variant="contained"
-              onClick={handleCloneData}
-            >
-              <AddIcon fontSize="small" />
-            </Button>
-          </div>
+      <Paper style={{ padding: 10 }}>
+        <ItemSummary
+          handleClick={handleAdd}
+          options={options}
+          parentData={parentData}
+        />
+        <Divider style={{ margin: "10px 0px 10px 0px" }} />
+        <div>
+          {options?.map((item) => {
+            return (
+              <div
+                key={item.id}
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CustomOption
+                  parentData={parentData?.availableSize}
+                  item={item}
+                  handleUpdatePizza={handleUpdatePizza}
+                />
+                <CustomCheese
+                  item={item}
+                  handleUpdatePizza={handleUpdatePizza}
+                />
+                <Divider style={{ margin: "10px 0px 10px 0px" }} />
+              </div>
+            );
+          })}
         </div>
-      </div>
-      <Divider />
+      </Paper>
     </div>
   );
 };

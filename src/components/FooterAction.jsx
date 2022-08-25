@@ -1,15 +1,35 @@
 import { Button } from "@mui/material";
 
-const FooterAction = ({ handleClick, buttonTitle }) => {
+const FooterAction = ({
+  buttonTitle,
+  handleCancel,
+  handleClick,
+  secondaryAction,
+  secondaryTitle,
+}) => {
   return (
     <div
       style={{
+        display: "flex",
         position: "absolute",
         bottom: 10,
         left: 10,
         right: 10,
       }}
     >
+      {secondaryAction ? (
+        <>
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            onClick={handleCancel}
+          >
+            {secondaryTitle}
+          </Button>
+          <div style={{ margin: 10 }} />
+        </>
+      ) : null}
       <Button fullWidth variant="contained" onClick={handleClick}>
         {buttonTitle}
       </Button>
@@ -19,6 +39,10 @@ const FooterAction = ({ handleClick, buttonTitle }) => {
 
 FooterAction.defaultProps = {
   buttonTitle: "Checkout",
+  handleCancel: undefined,
+  handleClick: undefined,
+  secondaryAction: false,
+  secondaryTitle: "Cancel Order",
 };
 
 export default FooterAction;

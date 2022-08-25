@@ -52,6 +52,11 @@ const Summary = () => {
     setOpen(false);
   };
 
+  const handleCancel = () => {
+    dispatch(clearData());
+    navigate("/");
+  };
+
   return (
     <Layout>
       <TopButton buttonTitle="Back to review" handleClick={handleBack} />
@@ -71,7 +76,12 @@ const Summary = () => {
           </CardContent>
         </Card>
       </div>
-      <FooterAction buttonTitle="Submit Order" handleClick={handleOrder} />
+      <FooterAction
+        buttonTitle="Submit Order"
+        handleCancel={handleCancel}
+        handleClick={handleOrder}
+        secondaryAction
+      />
       <CustomDialog open={open} handleClose={handleClose} />
     </Layout>
   );

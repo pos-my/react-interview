@@ -35,11 +35,13 @@ const PizzaContent = ({ parentData, handleUpdateOptions }) => {
   };
 
   const handleUpdatePizza = (id, value, toUpdate) => () => {
-    const findPizza = options?.find((pizza) => pizza.id === id);
+    let findPizza = options?.find((pizza) => pizza.id === id);
     const filterPizza = options?.filter((pizza) => pizza.id !== id);
 
-    if (toUpdate === "size") findPizza[toUpdate] = toUpperCase(value);
-    if (toUpdate === "withCheese") findPizza[toUpdate] = value;
+    if (toUpdate === "size")
+      findPizza = { ...findPizza, [toUpdate]: toUpperCase(value) };
+    if (toUpdate === "withCheese")
+      findPizza = { ...findPizza, [toUpdate]: value };
     const updatedListOfPizza = [...filterPizza, findPizza].sort(
       (a, b) => a.id - b.id
     );

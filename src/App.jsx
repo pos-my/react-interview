@@ -7,6 +7,7 @@ const Home = lazy(() => import("./views/Home"));
 const Order = lazy(() => import("./views/Order"));
 const NotFound = lazy(() => import("./views/NotFound"));
 const Review = lazy(() => import("./views/Review"));
+const Summary = lazy(() => import("./views/Summary"));
 
 const App = () => (
   <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
@@ -17,7 +18,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/order" element={<Order />} />
             <Route path="/review" element={<Review />} />
-            <Route path="/summary" element={<Review />} />
+            <Route path="/summary" element={<Summary />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

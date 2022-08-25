@@ -1,5 +1,5 @@
 import { Divider, Paper } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ItemSummary from "../components/pizzaContent/ItemSummary";
 import CustomOption from "../components/pizzaContent/CustomOption";
 import CustomCheese from "../components/pizzaContent/CustomCheese";
@@ -18,20 +18,27 @@ const PizzaContent = ({ parentData, handleUpdateOptions }) => {
     defaultSize = "Large";
   }
 
-  const [options, setOptions] = useState([
-    { id: 0, size: defaultSize, withCheese: true },
-  ]);
+  const validateOption = parentData?.options
+    ? parentData?.options
+    : [{ id: 0, size: defaultSize, withCheese: true }];
+
+  const [options, setOptions] = useState(validateOption);
 
   useEffect(() => {
-    if (options) handleUpdateOptions(options, parentData.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options]);
+    if (!parentData.options)
+      handleUpdateOptions(
+        [{ id: 0, size: defaultSize, withCheese: true }],
+        parentData.id
+      );
+  }, [defaultSize, handleUpdateOptions, parentData.id, parentData.options]);
 
   const handleAdd = () => {
-    setOptions((prev) => [
-      ...prev,
-      { id: prev.length, size: defaultSize, withCheese: true },
-    ]);
+    const updatedPizza = [
+      ...options,
+      { id: options.length, size: defaultSize, withCheese: true },
+    ];
+    setOptions(updatedPizza);
+    handleUpdateOptions(updatedPizza, parentData.id);
   };
 
   const handleUpdatePizza = (id, value, toUpdate) => () => {
@@ -46,6 +53,7 @@ const PizzaContent = ({ parentData, handleUpdateOptions }) => {
       (a, b) => a.id - b.id
     );
     setOptions(updatedListOfPizza);
+    handleUpdateOptions(updatedListOfPizza, parentData.id);
   };
 
   return (

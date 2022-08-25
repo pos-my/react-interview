@@ -11,7 +11,7 @@ import PizzaContent from "./PizzaContent";
 const Review = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const selectedPizzaData = useSelector(selectedPizza) || "";
+  const selectedPizzaData = useSelector(selectedPizza);
 
   const handleBack = () => {
     navigate(-1);

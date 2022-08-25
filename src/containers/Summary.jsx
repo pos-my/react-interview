@@ -1,11 +1,19 @@
+import * as React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { selectedPizza, services } from "../redux/selector";
 import Layout from "../components/Layout";
 import withService from "../hoc/withService";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import { toUpperCase } from "./PizzaContent";
+import FooterAction from "../components/FooterAction";
+import TopButton from "../components/TopButton";
+import SummaryContent from "../components/SummaryContent";
+import CustomDialog from "../components/CustomDialog";
 
 const Summary = () => {
+  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   const servicesData = useSelector(services) || "";
   const selectedPizzaData = useSelector(selectedPizza) || "";
   let calculateTotalPrice = 0;
@@ -26,99 +34,42 @@ const Summary = () => {
     "Total Pizza": totalPizza,
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  const handleOrder = () => {
+    setOpen(true);
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Layout>
-      <Card>
-        <CardContent>
-          {Object.keys(headerDetails).map((headerItem, headerKey) => (
-            <div key={headerKey.toString()} style={{ display: "flex" }}>
-              <Typography variant="body2" style={{ fontWeight: "bold" }}>
-                {headerItem}:
-              </Typography>
-              <Typography variant="body2" style={{ marginLeft: 5 }}>
-                {headerDetails[headerItem]}
-              </Typography>
-            </div>
-          ))}
-
-          {selectedPizzaData?.map((item) => {
-            const itemOption = item?.options;
-            const checkOptions = itemOption ? itemOption.length : 1;
-            const calculatePerPizza = item.price * checkOptions;
-            const smallSize = itemOption?.filter(
-              (pizzaOption) => pizzaOption.size === "Small"
-            );
-            const mediumSize = itemOption?.filter(
-              (pizzaOption) => pizzaOption.size === "Medium"
-            );
-            const largeSize = itemOption?.filter(
-              (pizzaOption) => pizzaOption.size === "Large"
-            );
-
-            const withCheese = itemOption?.filter(
-              (pizzaOption) => pizzaOption.withCheese === true
-            );
-
-            let pizzaSizeData = {};
-            let totalPizza = 0;
-            if (smallSize && smallSize?.length > 0) {
-              pizzaSizeData = {
-                ...pizzaSizeData,
-                "Small Size": `${smallSize?.length}`,
-              };
-              totalPizza += smallSize?.length;
-            }
-
-            if (mediumSize && mediumSize?.length > 0) {
-              pizzaSizeData = {
-                ...pizzaSizeData,
-                "Medium Size": `${mediumSize?.length}`,
-              };
-              totalPizza += mediumSize?.length;
-            }
-
-            if (largeSize && largeSize?.length > 0) {
-              pizzaSizeData = {
-                ...pizzaSizeData,
-                "Large Size": `${largeSize?.length}`,
-              };
-              totalPizza += largeSize?.length;
-            }
-
-            const dataToView = {
-              "Pizza Name": item.name,
-              "With Cheese": withCheese?.length,
-              "Without Cheese": checkOptions - withCheese?.length,
-              "Total Price": `$${calculatePerPizza}`,
-              "Total Pizza": totalPizza,
-              ...pizzaSizeData,
-            };
-
-            return (
-              <div key={item.id} style={{ margin: "20px 0px 20px 0px" }}>
-                {Object.keys(dataToView).map(
-                  (dataToViewItem, dataToViewKey) => (
-                    <div
-                      key={dataToViewKey.toString()}
-                      style={{ display: "flex" }}
-                    >
-                      <Typography
-                        variant="body2"
-                        style={{ fontWeight: "bold" }}
-                      >
-                        {dataToViewItem}:
-                      </Typography>
-                      <Typography variant="body2" style={{ marginLeft: 5 }}>
-                        {dataToView[dataToViewItem]}
-                      </Typography>
-                    </div>
-                  )
-                )}
-              </div>
-            );
-          })}
-        </CardContent>
-      </Card>
+      <TopButton buttonTitle="Back to review" handleClick={handleBack} />
+      <div
+        style={{
+          position: "absolute",
+          inset: "70px 8px 60px 8px",
+          overflowY: "scroll",
+        }}
+      >
+        <Card>
+          <CardContent>
+            <SummaryContent
+              headerDetails={headerDetails}
+              data={selectedPizzaData}
+            />
+          </CardContent>
+        </Card>
+      </div>
+      <FooterAction buttonTitle="Submit Order" handleClick={handleOrder} />
+      <CustomDialog open={open} handleClose={handleClose} />
     </Layout>
   );
 };

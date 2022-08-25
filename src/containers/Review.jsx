@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
 import { updateSelectedPizza } from "../redux/services";
 import { selectedPizza } from "../redux/selector";
 import Layout from "../components/Layout";
 import withReview from "../hoc/withReview";
 import TopButton from "../components/TopButton";
 import PizzaContent from "./PizzaContent";
+import FooterAction from "../components/FooterAction";
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -56,18 +56,7 @@ const Review = () => {
             ))
           : null}
       </div>
-      <div
-        style={{
-          position: "absolute",
-          bottom: 10,
-          left: 10,
-          right: 10,
-        }}
-      >
-        <Button fullWidth variant="contained" onClick={handleSummary}>
-          Checkout
-        </Button>
-      </div>
+      <FooterAction handleClick={handleSummary} />
     </Layout>
   );
 };

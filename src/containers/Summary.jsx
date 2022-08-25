@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectedPizza, services } from "../redux/selector";
 import Layout from "../components/Layout";
@@ -9,9 +9,11 @@ import { toUpperCase } from "./PizzaContent";
 import FooterAction from "../components/FooterAction";
 import TopButton from "../components/TopButton";
 import SummaryContent from "../components/SummaryContent";
+import { clearData } from "../redux/services";
 import CustomDialog from "../components/CustomDialog";
 
 const Summary = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const servicesData = useSelector(services) || "";
@@ -41,6 +43,7 @@ const Summary = () => {
   const handleOrder = () => {
     setOpen(true);
     setTimeout(() => {
+      dispatch(clearData());
       navigate("/");
     }, 1000);
   };

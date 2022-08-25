@@ -12,6 +12,11 @@ const Review = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectedPizzaData = useSelector(selectedPizza);
+  let totalPizza = 0;
+
+  for (const element of selectedPizzaData) {
+    totalPizza += element?.options ? element?.options?.length : 1;
+  }
 
   const handleBack = () => {
     navigate(-1);
@@ -56,7 +61,10 @@ const Review = () => {
             ))
           : null}
       </div>
-      <FooterAction handleClick={handleSummary} />
+      <FooterAction
+        disabledMainAction={totalPizza < 1}
+        handleClick={handleSummary}
+      />
     </Layout>
   );
 };

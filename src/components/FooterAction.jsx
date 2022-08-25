@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 
 const FooterAction = ({
   buttonTitle,
+  disabledMainAction,
   handleCancel,
   handleClick,
   secondaryAction,
@@ -30,7 +31,12 @@ const FooterAction = ({
           <div style={{ margin: 10 }} />
         </>
       ) : null}
-      <Button fullWidth variant="contained" onClick={handleClick}>
+      <Button
+        disabled={disabledMainAction}
+        fullWidth
+        variant="contained"
+        onClick={handleClick}
+      >
         {buttonTitle}
       </Button>
     </div>
@@ -39,6 +45,7 @@ const FooterAction = ({
 
 FooterAction.defaultProps = {
   buttonTitle: "Checkout",
+  disabledMainAction: false,
   handleCancel: undefined,
   handleClick: undefined,
   secondaryAction: false,
